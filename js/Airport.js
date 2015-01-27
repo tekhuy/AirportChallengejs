@@ -3,5 +3,6 @@ var Airport = function() {
 };
 
 Airport.prototype.park = function(plane) {
+  plane.land();
   this.planes.push(plane);
 };

@@ -1,17 +1,27 @@
 describe ("Airport", function() {
   
+  var heathrow;
+  var plane;
+
+  beforeEach(function() {
+    heathrow = new Airport();
+    plane = jasmine.createSpyObj('plane', ['land']);
+  });
+
   it("has no planes when created", function() {
-    var heathrow = new Airport();
-    
     expect(heathrow.planes).toEqual([]);
   });
 
-  it("can park a plane", function() {
-    var heathrow = new Airport();
-    
-    heathrow.park('a plane');
+  it("lands a plane before parking it", function() {
+    heathrow.park(plane);
 
-    expect(heathrow.planes).toEqual(['a plane']);
+    expect(plane.land).toHaveBeenCalled();
+  });
+
+  it("can park a plane", function() {
+    heathrow.park(plane);
+
+    expect(heathrow.planes).toEqual([plane]);
   });
 
 });
