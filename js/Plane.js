@@ -9,6 +9,9 @@ Plane.prototype.isFlying = function() {
 };
 
 Plane.prototype.land = function() {
+  if (this.isFlying() === false) {
+    throw new Error("You are grounded!");
+  };
   this.flying = false;
 };
 
